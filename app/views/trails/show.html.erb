@@ -2,3 +2,8 @@
 <h2>Address: <%=@trail.address%></h2>
 <h2>Length: <%=@trail.length%></h2>
 <h2>Total Number Of Trips On this Trail: <%=@total_trips%></h2>
+
+<%@trips.each do |t| %>
+<%=t.name%>
+<%=t.total_hiking_distance%>
+<%end%>
