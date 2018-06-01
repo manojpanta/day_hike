@@ -1,3 +1,4 @@
 class Trail < ApplicationRecord
-
-end 
+  has_many :trail_trips
+  has_many :trips, through: :trail_trips
+end
