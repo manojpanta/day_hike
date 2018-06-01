@@ -71,5 +71,45 @@ describe 'visitor visiting trips index' do
 
     expect(page).to have_content("Average Hiking Distance: #{average_hiking_distance}")
   end
+  it 'can see longest hiking distance in trip show page' do
+    trip = Trip.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
+
+    trip.trails.create(name: 'long trail', length: 3, address: 'denver')
+    trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
+    trail2 = trip.trails.create(name: 'long trail123', length: 40, address: 'thorntnon')
+    longest_hiking_distance = trail2.length
+
+    visit trip_path(trip)
+
+
+    expect(page).to have_content("Longest Hiking Distance: #{longest_hiking_distance}")
+  end
+  it 'can see shortest hiking distance in trip show page' do
+    trip = Trip.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
+
+    trail1 = trip.trails.create(name: 'long trail', length: 3, address: 'denver')
+    trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
+    trip.trails.create(name: 'long trail123', length: 40, address: 'thorntnon')
+    shortest_hiking_distance = trail1.length
+
+
+    visit trip_path(trip)
+
+
+    expect(page).to have_content("Shortest Hiking Distance: #{shortest_hiking_distance}")
+  end
+
+  it 'can click on trail name to go to trail show page' do
+    trip = Trip.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
+
+    trail = trip.trails.create(name: 'long trail', length: 3, address: 'denver')
+
+    visit trip_path(trip)
+
+    click_on trail.name
+
+
+    expect(current_path).to eq(trail_path(trail))
+  end
 
 end

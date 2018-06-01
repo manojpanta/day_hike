@@ -1,11 +1,14 @@
 <h2> This is : <%=@trip%> </h2>
 <h2>All The Trails </h2>
 <h2>Total Hiking Distance: <%=@total_hiking_distance%> </h2>
+<h2>Average Hiking Distance: <%=@average_hiking_distance%> </h2>
+<h2>Longest Hiking Distance: <%=@longest_hiking_distance%> </h2>
+<h2>Shortest Hiking Distance: <%=@shortest_hiking_distance%> </h2>
 
 
 <%@trails.each do |t|%>
 <ul>
-  <%=t.name%>
+  <%=link_to t.name, trail_path(t)%>
   <%=t.address%>
   <%=t.length%>
 </ul>
