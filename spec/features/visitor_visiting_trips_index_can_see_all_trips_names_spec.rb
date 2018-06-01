@@ -1,16 +1,8 @@
 require 'rails_helper'
-"As a visitor,
-when I visit the hiking trips index page,
-and I click on the name of a hiking trip,
-I see a unique page for that hiking trip."
 describe 'visitor visiting trips index' do
   it 'can show all the trips names' do
     trip = Trip.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
     trip1 = Trip.create(name: 'this is new trip', start_date: '02/02/13', end_date: '02/03/13')
-
-    # trail = trip.trails.create(name: 'long trail', length: 3, address: 'denver')
-    # trail1 = trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
-
 
     visit trips_path
 
@@ -18,11 +10,10 @@ describe 'visitor visiting trips index' do
     expect(page).to have_content(trip1.name)
   end
   it 'can click on trip  name to go to trip show page' do
+
     trip = Trip.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
     trip1 = Trip.create(name: 'this is new trip', start_date: '02/02/13', end_date: '02/03/13')
 
-    # trail = trip.trails.create(name: 'long trail', length: 3, address: 'denver')
-    # trail1 = trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
 
     visit trips_path
 
@@ -76,6 +67,7 @@ describe 'visitor visiting trips index' do
 
     trip.trails.create(name: 'long trail', length: 3, address: 'denver')
     trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
+
     trail2 = trip.trails.create(name: 'long trail123', length: 40, address: 'thorntnon')
     longest_hiking_distance = trail2.length
 
