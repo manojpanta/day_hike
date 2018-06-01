@@ -14,12 +14,9 @@ describe 'visitor visiting trail show page ' do
   it 'can show all the trip taken and total trip distance' do
 
     trail = Trail.create(name: 'long trail', length: 3, address: 'denver')
-    trail1 = Trail.create(name: 'long trail', length: 4, address: 'denver')
+
 
     trip = trail.trips.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
-
-    trip1 = trail1.trips.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
-
     trip1 = trail.trips.create(name: 'this is new trip', start_date: '02/02/13', end_date: '02/03/13')
 
 
@@ -36,8 +33,8 @@ describe 'visitor visiting trail show page ' do
 
     trail = Trail.create(name: 'long trail', length: 3, address: 'denver')
 
-    trip = trail.trips.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
-    trip1 = trail.trips.create(name: 'this is new trip', start_date: '02/02/13', end_date: '02/03/13')
+    trail.trips.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
+    trail.trips.create(name: 'this is new trip', start_date: '02/02/13', end_date: '02/03/13')
 
 
     visit trail_path(trail)

@@ -23,11 +23,11 @@ describe 'instance method' do
   it 'can return longest hiking distance' do
     trip = Trip.create(name: 'trip1', start_date: '02/03/13', end_date: '02/03/13')
 
-    trail = trip.trails.create(name: 'long trail', length: 3, address: 'denver')
-    trail1 = trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
+    trip.trails.create(name: 'long trail', length: 3, address: 'denver')
+    trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
     trail2 = trip.trails.create(name: 'long trail123', length: 40, address: 'thorntnon')
 
-    longest_hiking_distance =trail2.length
+    longest_hiking_distance = trail2.length
 
     expect(trip.longest_hiking_distance).to eq(longest_hiking_distance)
   end
@@ -38,7 +38,7 @@ describe 'instance method' do
     trip.trails.create(name: 'long trail123', length: 30, address: 'thorntnon')
     trip.trails.create(name: 'long trail123', length: 40, address: 'thorntnon')
 
-    shortest_hiking_distance =trail.length
+    shortest_hiking_distance = trail.length
 
     expect(trip.shortest_hiking_distance).to eq(shortest_hiking_distance)
   end
